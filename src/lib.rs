@@ -1,6 +1,6 @@
 /// Some generic functions
 ///
-fn list_to_string(list: Vec<&str>) -> String {
+fn list_to_string(list: &Vec<String>) -> String {
     return list.join(", ")
 }
 
@@ -10,8 +10,8 @@ mod tests {
 
     #[test]
     fn test_list_to_string() {
-        let test_args = vec!["-w", "60", "arg", "whoa"];
+        let test_args = vec!["-w".to_string(), "60".to_string(), "arg".to_string(), "whoa".to_string()];
 
-        assert_eq!(list_to_string(test_args), "-w, 60, arg, whoa")
+        assert_eq!(list_to_string(&test_args), "-w, 60, arg, whoa")
     }
 }
