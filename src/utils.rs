@@ -14,21 +14,17 @@ pub fn remove_articles(text: &String) -> String {
         "the".to_string(),
     ];
 
-    let lowered_text = text.to_lowercase();
-    let mut new_string = String::new();
+    let mut word_list = Vec::<String>::new();
 
-    'outer: for word in lowered_text.split_whitespace() {
+    'outer: for word in text.to_lowercase().split_whitespace() {
         for article in &articles {
             if word == article {
                 continue 'outer;
             }
         }
-        new_string.push_str(&word);
-        new_string.push_str(" ");
+        word_list.push(word.to_string());
     }
-    // Remove space at end of string
-    let len = new_string.len();
-    new_string.truncate(len - 1);
+    let mut new_string = word_list.join(" ");
 
     // Now remove some other special characters
     new_string = new_string.replace(":", "");
